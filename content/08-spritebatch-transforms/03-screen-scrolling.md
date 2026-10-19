@@ -75,7 +75,7 @@ public void Draw(GameTime gameTime)
 {
     // Player-synched scrolling
     Vector2 playerOffset = new(_viewportWidth / 2, _viewportHeight / 2);
-    viewportOffset = playerOffset - Player.Position;
+    Vector2 viewportOffset = playerOffset - Player.Position;
 
     // Create the translation matrix representing the offset
     Matrix transform = Matrix.CreateTranslation(viewportOffset.X,viewportOffset.Y, 0);
@@ -98,7 +98,7 @@ public void Draw(GameTime gameTime)
     Vector2 scroll = Player.Position - playerOffset;
 
     // Clamp the resulting vector to the visible region
-    Vector2 minScroll = new(0, 0);
+    Vector2 minScroll = Vector2.Zero;
     Vector2 maxScroll = new(_worldWidth - _viewportWidth, _worldHeight - _viewportHeight);
     scroll = Vector2.Clamp(scroll, minScroll, maxScroll);
     Vector2 viewportOffset = -scroll;
